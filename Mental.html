@@ -87,12 +87,6 @@
       background: #e0edff;
     }
 
-    .btn-active {
-      background: #2563eb !important;
-      color: #ffffff !important;
-      border-color: #2563eb !important;
-    }
-
     /* Page Container */
     .page-container {
       min-height: 100vh;
@@ -578,8 +572,8 @@
         </div>
 
         <div class="form-toggle">
-          <button class="btn btn-outline btn-active" id="login-toggle-btn" onclick="toggleForm('login')">Login</button>
-          <button class="btn btn-outline" id="register-toggle-btn" onclick="toggleForm('register')">Register</button>
+          <button class="btn btn-outline active-form" onclick="toggleForm('login')">Login</button>
+          <button class="btn btn-primary" onclick="toggleForm('register')">Register</button>
         </div>
 
         <!-- LOGIN FORM -->
@@ -718,20 +712,26 @@
       currentForm = type;
       const loginForm = document.getElementById('login-form');
       const registerForm = document.getElementById('register-form');
-      const loginBtn = document.getElementById('login-toggle-btn');
-      const registerBtn = document.getElementById('register-toggle-btn');
+      const loginBtn = document.querySelector('.form-toggle .btn-outline');
+      const registerBtn = document.querySelector('.form-toggle .btn-primary');
       
       if (type === 'login') {
         loginForm.style.display = 'block';
         registerForm.style.display = 'none';
-        loginBtn.classList.add('btn-active');
+        loginBtn.classList.add('active-form');
         loginBtn.classList.remove('btn-primary');
-        registerBtn.classList.remove('btn-active');
+        loginBtn.classList.add('btn-outline');
+        registerBtn.classList.remove('active-form');
+        registerBtn.classList.add('btn-primary');
+        registerBtn.classList.remove('btn-outline');
       } else {
         loginForm.style.display = 'none';
         registerForm.style.display = 'block';
-        registerBtn.classList.add('btn-active');
-        loginBtn.classList.remove('btn-active');
+        loginBtn.classList.remove('active-form');
+        loginBtn.classList.add('btn-outline');
+        registerBtn.classList.add('active-form');
+        registerBtn.classList.remove('btn-primary');
+        registerBtn.classList.add('btn-outline');
       }
       hideSuccessMessage();
     }
@@ -779,4 +779,3 @@
   </script>
 </body>
 </html>
-
